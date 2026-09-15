@@ -1,0 +1,25 @@
+@model Hotspot
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Gym Count</th>
+            <th scope="col">Pokestop Density</th>
+            <th scope="col">Parking Available</th>
+        </tr>
+    </thead>
+<tbody>
+   
+    <tr> 
+    <th scope="row">@Model.Id</th>
+      <td>@Model.Name</td>
+      <td>@Model.GymCount</td>
+      <td>@Model.PokestopDensity</td>
+      <td>@(Model.hasParking ? "Yes" : "No")</td>
+
+    </tr>
+
+</tbody>
+</table>

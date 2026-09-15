@@ -1,0 +1,26 @@
+@model List<Hotspot>
+
+<h2>Hot Spots</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Gym Count</th>
+            <th scope="col">Pokestop Density</th>
+            <th scope="col">Parking Available</th>
+        </tr>
+    </thead>
+<tbody>
+    @foreach(Hotspot hotSpot in @Model){
+    <tr> 
+    <th scope="row">@hotSpot.Id</th>
+      <td>@hotSpot.Name</td>
+      <td>@hotSpot.GymCount</td>
+      <td>@hotSpot.PokestopDensity</td>
+      <td>@(hotSpot.hasParking ? "Yes" : "No")</td>
+      <td href="/HotSpots/Details/@hotSpot.Id"><a href="/HotSpots/Details/@hotSpot.Id">link</a></td>
+    </tr>
+}
+</tbody>
+</table>
