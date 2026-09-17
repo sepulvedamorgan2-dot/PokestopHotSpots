@@ -1,0 +1,22 @@
+
+@model Hotspot;
+
+@{
+    
+    var imgPath = Url.Content("~/images/" + @Model.Id + ".jpg");
+   
+   
+}
+<div class="col-12 col-lg-8">
+<div class="card w-100 ">
+    <div class="card-img-top">
+        <img src="@imgPath" class="card-img-top img-fluid" alt="" />
+
+    <div class="card-body">
+        <h5 class="card-title fs-3">@Model.Name</h5>
+        <p class="card-text">@Model.GymCount gyms</p>
+       
+        
+    </div>
+</div>
+</div>

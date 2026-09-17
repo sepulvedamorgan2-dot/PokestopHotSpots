@@ -1,10 +1,24 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Pokestop Hot Spots";
+    var featuredHotspot = HotSpotData.All.First(e => e.GymCount > 2); ;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+<div class="row justify-content-center mt-2">
+        
+        <h1 class="col-12 col-lg-8">Featured Hotspot</h1>
+    
 </div>
 
-<script src="https://jgrissom.github.io/dotnet-web-dev/week-04/homework-checks.js"></script>
+<div class="row justify-content-center mt-2">
+        
+        <partial name="_HotspotCard" model="featuredHotspot" />
+   
+
+</div>
+
+
+@section Scripts {
+    <script src="https://jgrissom.github.io/dotnet-web-dev/week-05/homework-checks.js"></script>
+}
