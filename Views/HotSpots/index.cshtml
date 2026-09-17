@@ -1,16 +1,20 @@
 @model List<Hotspot>
 @{
     ViewData["Title"] = "Hot Spots";
+    ViewData["PreviousPage"] = Url.Content("/");
 }
+<div class="row justify-content-center my-3">
+<partial name="_BackArrow" />
+</div>
 <h2>Hot Spots</h2>
 <table class="table table-striped">
     <thead>
         <tr>
             <th scope="col"></th>
             <th scope="col">Name</th>
-            <th scope="col">Gym Count</th>
-            <th scope="col">Pokestop Density</th>
-            <th scope="col">Parking Available</th>
+            <th  class="d-none d-md-table-cell" scope="col">Gym Count</th>
+            <th class="d-none d-md-table-cell" scope="col">Pokestop Density</th>
+            <th class="d-none d-md-table-cell" scope="col">Parking Available</th>
         </tr>
     </thead>
 <tbody>
@@ -18,10 +22,10 @@
     <tr> 
     <th scope="row">@hotSpot.Id</th>
       <td>@hotSpot.Name</td>
-      <td>@hotSpot.GymCount</td>
-      <td>@hotSpot.PokestopDensity</td>
-      <td>@(hotSpot.hasParking ? "Yes" : "No")</td>
-      <td href="/HotSpots/Details/@hotSpot.Id"><a href="/HotSpots/Details/@hotSpot.Id">link</a></td>
+      <td class="d-none d-md-table-cell">@hotSpot.GymCount</td>
+      <td class="d-none d-md-table-cell">@hotSpot.PokestopDensity</td>
+      <td class="d-none d-md-table-cell">@(hotSpot.hasParking ? "Yes" : "No")</td>
+      <td href="/HotSpots/Details/@hotSpot.Id"><a href="/HotSpots/Details/@hotSpot.Id">Details</a></td>
     </tr>
 }
 </tbody>
