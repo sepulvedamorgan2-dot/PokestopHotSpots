@@ -1,3 +1,4 @@
+
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PokestopHotSpots.Models;
@@ -40,10 +41,10 @@ public class HotSpotsController : Controller
         HotSpotData.All.Add(hotspot);
 
 
-        return RedirectToAction(nameof(Index))
-    }
-    {
-        return View();
+        return RedirectToAction(nameof(Index));
+    
+    
+       
     }
     
 

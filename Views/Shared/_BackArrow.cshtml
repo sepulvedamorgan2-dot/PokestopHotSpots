@@ -1,4 +1,12 @@
 
-<div>
+
+<div class="col">
 <a href="@ViewData["PreviousPage"]" class="btn btn-primary"> Back</a>
+
+</div>
+<div class="col d-flex justify-content-end">
+@if (ViewData["FormButton"] != null )
+{
+    <a href="@ViewData["FormButton"]" class="btn btn-success ">Add Hot Spot</a>
+}
 </div>
