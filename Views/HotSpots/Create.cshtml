@@ -1,0 +1,60 @@
+
+@model Hotspot
+@{
+    ViewData["Title"] = "Create Hot Spot";
+    ViewData["PreviousPage"] = Url.Content("/HotSpots/Index");
+}
+<div class="row justify-content-center my-3">
+    <div class="col-12 col-md-8 mb-2">
+        <partial name="_BackArrow" />
+    </div>
+   
+       
+        <h1 class="col-12 col-lg-8">Add a HotSpot</h1>
+
+
+   
+<form asp-action="Create" method="post" class="col-12 col-lg-8">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+   
+    <div class="mb-3">
+        <label asp-for="GymCount" class="form-label"></label>
+        <input asp-for="GymCount" class="form-control" />
+        <span asp-validation-for="GymCount" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PokestopDensity" class="form-label"></label>
+        <select asp-for="PokestopDensity" class="form-control" >  
+            <option selected value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+        <span asp-validation-for="PokestopDensity" class="text-danger"></span>
+    </div>
+
+
+   
+
+
+   
+    <div class="form-check mb-3">
+        <input asp-for="hasParking" class="form-check-input" />
+        <label asp-for="hasParking" class="form-check-label"></label>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Add HotSpots</button>
+    <a asp-action="Index" class="btn btn-link">Cancel</a>
+</form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
