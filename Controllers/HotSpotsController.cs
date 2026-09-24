@@ -20,6 +20,31 @@ public class HotSpotsController : Controller
         return View(Hotspot);
     }
 
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken] //Always use  this, checks for a fake request(security measure)
+    public IActionResult Create(Hotspot hotspot)
+    {
+        // Checks if submitted model follows the rules defined in the model class
+        if (!ModelState.IsValid)
+        {
+            // if not, return the add a hotspot view with the same data so the user doesnt have to repeat it all
+            return View(hotspot);
+        
+        }
+        hotspot.Id = HotSpotData.All.Max(h => h.Id) + 1;
+        HotSpotData.All.Add(hotspot);
+
+
+        return RedirectToAction(nameof(Index))
+    }
+    {
+        return View();
+    }
     
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

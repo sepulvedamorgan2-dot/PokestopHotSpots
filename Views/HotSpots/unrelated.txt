@@ -1,0 +1,11 @@
+My past/current development workflow has had a flaw that was only revealed to me within the last week: I rebuild similar parts of my application's multiple times. A single example of this are the horizontal cards in my Raid Power app, I made nearly an identical card three times by hand. A primary benefit of using CDD is that I could instead build a base card component that I could change its functionality based on what is needed(such as swapping something or opening a details modal) instead of wasting time building the entire card from scratch every time. Furthermore, if I wanted to change how all these cards across my application looked, I would only have to modify one component as apposed to going to each page where that card is used and updating them one by one. 
+
+
+
+
+The thing I imagine I would struggle with the most is making components look good across a variety of screen sizes, It takes a long time to get cards to look good on mobile and desktop when they're just custom made for where they're being places, making them reusable AND usable in desktop/mobile will be difficult for me to adjust to. Another thing I may struggle with is changing my mindset from making components instead of whole pages. Going from copying and pasting the bases of pages(navbar, head, footer) to having a _layout has been a difficult adjustment in my .Net WebDev class. 
+
+
+
+
+
