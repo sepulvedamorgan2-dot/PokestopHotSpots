@@ -2,18 +2,24 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PokestopHotSpots.Models;
-
+using PokestopHotSpots.Data;
 namespace PokestopHotSpots.Controllers;
 
 public class HotSpotsController : Controller
 {
+    private readonly PokestopHotspotContext _context;
+
+    public HotSpotsController(PokestopHotspotContext context)
+    {
+        _context = context;
+    }
     public IActionResult Index()
     {
-        return View(HotSpotData.All);
+        return View(_context.Hotspots.ToList());
     }
     public IActionResult Details(int id)
     {
-        var Hotspot = HotSpotData.All.FirstOrDefault(h => h.Id == id);
+        var Hotspot = _context.Hotspots.FirstOrDefault(h => h.Id == id);
         if (Hotspot == null)
         {
             return NotFound();
@@ -37,8 +43,8 @@ public class HotSpotsController : Controller
             return View(hotspot);
         
         }
-        hotspot.Id = HotSpotData.All.Max(h => h.Id) + 1;
-        HotSpotData.All.Add(hotspot);
+        _context.Hotspots.Add(hotspot);
+        _context.SaveChanges();
 
 
         return RedirectToAction(nameof(Index));

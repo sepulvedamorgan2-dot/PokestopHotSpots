@@ -24,4 +24,5 @@ public class Hotspot
 
     [Display(Name = "Parking Availability?")]
     public bool hasParking { get; set; }
+    
 }

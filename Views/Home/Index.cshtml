@@ -1,6 +1,7 @@
-﻿@{
+﻿@model List<Hotspot>
+@{
     ViewData["Title"] = "Pokestop Hot Spots";
-    var featuredHotspot = HotSpotData.All.First(e => e.GymCount > 2); ;
+    var featuredHotspot = Model.First(e => e.GymCount > 2); ;
 }
 
 
