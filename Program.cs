@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using PokestopHotSpots.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+ builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<PokestopHotspotContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 
