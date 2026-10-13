@@ -25,4 +25,8 @@ public class Hotspot
     [Display(Name = "Parking Availability?")]
     public bool hasParking { get; set; }
     
+    [Display(Name = "Hotspot Description")]
+    [StringLength(100, MinimumLength = 0)]
+    public string? Description { get; set; }
+
 }

@@ -74,7 +74,7 @@ public class HotSpotsController : Controller
         }
          [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,GymCount,PokestopDensity,hasParking")] Hotspot hotspot)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,GymCount,PokestopDensity,hasParking, Description")] Hotspot hotspot)
         {
             if (id != hotspot.Id)
             {

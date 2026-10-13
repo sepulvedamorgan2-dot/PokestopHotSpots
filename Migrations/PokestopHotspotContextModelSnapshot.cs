@@ -29,6 +29,10 @@ namespace PokestopHotSpots.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<int>("GymCount")
                         .HasColumnType("int");
 
@@ -52,6 +56,7 @@ namespace PokestopHotSpots.Migrations
                         new
                         {
                             Id = 1,
+                            Description = "A beautiful park along the lakefront with plenty of Pokestops and gyms.",
                             GymCount = 6,
                             Name = "Lakefront Park",
                             PokestopDensity = "High",
@@ -60,6 +65,7 @@ namespace PokestopHotSpots.Migrations
                         new
                         {
                             Id = 2,
+                            Description = "A popular park with a high density of Pokestops and gyms, perfect for Pokemon Go players.",
                             GymCount = 4,
                             Name = "Veterans Park",
                             PokestopDensity = "High",
@@ -68,6 +74,7 @@ namespace PokestopHotSpots.Migrations
                         new
                         {
                             Id = 3,
+                            Description = "A vibrant market with a variety of shops and eateries.",
                             GymCount = 3,
                             Name = "Milwaukee Public Market",
                             PokestopDensity = "High",
@@ -76,6 +83,7 @@ namespace PokestopHotSpots.Migrations
                         new
                         {
                             Id = 4,
+                            Description = "A historic neighborhood with a rich cultural heritage.",
                             GymCount = 4,
                             Name = "Historic Third Ward",
                             PokestopDensity = "High",
@@ -84,6 +92,7 @@ namespace PokestopHotSpots.Migrations
                         new
                         {
                             Id = 5,
+                            Description = "A lovely beach with a great view and plenty of space to play.",
                             GymCount = 3,
                             Name = "Bradford Beach",
                             PokestopDensity = "Medium",
@@ -92,6 +101,7 @@ namespace PokestopHotSpots.Migrations
                         new
                         {
                             Id = 6,
+                            Description = "A large park with a variety of recreational activities and a moderate density of Pokestops and gyms.",
                             GymCount = 4,
                             Name = "Washington Park",
                             PokestopDensity = "Medium",
@@ -100,6 +110,7 @@ namespace PokestopHotSpots.Migrations
                         new
                         {
                             Id = 7,
+                            Description = "A beautiful conservatory with a variety of plants and flowers.",
                             GymCount = 3,
                             Name = "Mitchell Park Domes",
                             PokestopDensity = "Medium",
@@ -108,6 +119,7 @@ namespace PokestopHotSpots.Migrations
                         new
                         {
                             Id = 8,
+                            Description = "A peaceful park with a variety of trees and green spaces.",
                             GymCount = 2,
                             Name = "Humboldt Park",
                             PokestopDensity = "Medium",
@@ -116,6 +128,7 @@ namespace PokestopHotSpots.Migrations
                         new
                         {
                             Id = 9,
+                            Description = "A quiet park with a peaceful atmosphere and a low density of Pokestops and gyms.",
                             GymCount = 2,
                             Name = "Bay View Park",
                             PokestopDensity = "Low",
@@ -124,6 +137,7 @@ namespace PokestopHotSpots.Migrations
                         new
                         {
                             Id = 10,
+                            Description = "A small park with a peaceful atmosphere and a low density of Pokestops and gyms.",
                             GymCount = 2,
                             Name = "Kletzsch Park",
                             PokestopDensity = "Low",
