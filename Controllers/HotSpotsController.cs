@@ -103,6 +103,38 @@ public class HotSpotsController : Controller
             }
             return View(hotspot);
         }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var hotspot = await _context.Hotspots
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (hotspot == null)
+            {
+                return NotFound();
+            }
+
+            return View(hotspot);
+        }
+
+        // POST: HotSpotScaffold/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var hotspot = await _context.Hotspots.FindAsync(id);
+            if (hotspot != null)
+            {
+                _context.Hotspots.Remove(hotspot);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
