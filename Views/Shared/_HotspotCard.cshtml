@@ -23,6 +23,7 @@
         {
             <p class="card-text">@Model.PokestopDensity Pokestop Density</p>
             <p class="card-text">@(Model.hasParking ? " Parking Available" : "No Parking Available")</p>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary" type="button">Edit HotSpot</a>
           
         }
         @if (!ViewData["Title"].ToString().Contains("Details"))

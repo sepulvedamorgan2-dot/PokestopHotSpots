@@ -1,8 +1,13 @@
-
 using System.Diagnostics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PokestopHotSpots.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using PokestopHotSpots.Data;
+using PokestopHotSpots.Models;
 namespace PokestopHotSpots.Controllers;
 
 public class HotSpotsController : Controller
@@ -52,6 +57,52 @@ public class HotSpotsController : Controller
     
        
     }
+    // editing a hotspot
+    public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var hotspot = await _context.Hotspots.FindAsync(id);
+            if (hotspot == null)
+            {  
+                return NotFound();
+            }
+            return View(hotspot);
+        }
+         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,GymCount,PokestopDensity,hasParking")] Hotspot hotspot)
+        {
+            if (id != hotspot.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(hotspot);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!HotspotExists(hotspot.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(hotspot);
+        }
     
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -59,4 +110,8 @@ public class HotSpotsController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+    private bool HotspotExists(int id)
+        {
+            return _context.Hotspots.Any(e => e.Id == id);
+        }
 }
