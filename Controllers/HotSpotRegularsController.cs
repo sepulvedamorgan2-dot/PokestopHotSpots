@@ -20,41 +20,44 @@ public class HotSpotRegularsController : Controller
         _context = context;
     }
 
-    public IActionResult Create(int? hotspotId)
+    public IActionResult Create(int id) 
+{
+    
+    
+    HotspotRegularFormViewModel form = new HotspotRegularFormViewModel
     {
-        HotspotRegularFormViewModel form = new HotspotRegularFormViewModel
+        HotspotRegular = new HotspotRegular { HotspotId = id },
+        Hotspots = HotspotChoices(id)
+    };
+    return View(form);
+}
+
+
+    [HttpPost]
+    [ValidateAntiForgeryToken] //Always use  this, checks for a fake request(security measure)
+    public IActionResult Create(HotspotRegular hotspotRegular)
+    {
+        // Checks if submitted model follows the rules defined in the model class
+        if (!ModelState.IsValid)
         {
-            HotspotRegular = new HotspotRegular { HotspotId = hotspotId ?? 0 },
-            Hotspots = HotspotChoices(hotspotId)
-        };
-        return View(form);
-    }
-
-    // [HttpPost]
-    // [ValidateAntiForgeryToken] //Always use  this, checks for a fake request(security measure)
-    // public IActionResult Create(HotspotRegular hotspotRegular)
-    // {
-    //     // Checks if submitted model follows the rules defined in the model class
-    //     if (!ModelState.IsValid)
-    //     {
-    //         // if not, return the add a hotspot view with the same data so the user doesnt have to repeat it all
-    //         var form = new HotspotRegularFormViewModel
-    //         {
-    //             HotspotRegular = hotspotRegular,
-    //             Hotspots = HotspotChoices(hotspotRegular.HotspotId)
-    //         };
-    //         return View(form);
+            // if not, return the add a hotspot view with the same data so the user doesnt have to repeat it all
+            var form = new HotspotRegularFormViewModel
+            {
+                HotspotRegular = hotspotRegular,
+                Hotspots = HotspotChoices(hotspotRegular.HotspotId)
+            };
+            return View(form);
         
-    //     }
-    //     _context.HotspotRegulars.Add(hotspotRegular);
-    //     _context.SaveChanges();
+        }
+        _context.HotspotRegulars.Add(hotspotRegular);
+        _context.SaveChanges();
 
 
-    //     return RedirectToAction(nameof(Index));
+        return RedirectToAction("Details", "HotSpots", new { id = hotspotRegular.HotspotId });
     
     
        
-    // }
+    }
 
 
 

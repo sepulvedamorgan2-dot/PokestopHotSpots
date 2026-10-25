@@ -15,6 +15,7 @@ public class HotspotRegular
   
     [Required(ErrorMessage = "Friendship Codes are 12 digits long.")]
     [StringLength(12, MinimumLength = 12)]
+    [Display(Name = "Friendship Code")]
     public string FriendshipCode { get; set; } = "";
 
     [Display(Name = "Looking for Daily Gift Friend?")]

@@ -10,20 +10,24 @@
     </div>
    
        
-        <h1 class="col-12 col-lg-8">Add a HotSpot</h1>
+        <h1 class="col-12 col-lg-8">Add a Regular Player</h1>
 
 
    
 <form asp-action="Create" method="post" class="col-12 col-lg-8">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <p>@Model.HotspotRegular.HotspotId</p>
+   <div class="mb-3">
+    <label asp-for="HotspotRegular.HotspotId" class="form-label"></label>
     
-    <div class="mb-3">
-        <label asp-for="HotspotRegular.HotspotId" class="form-label"></label>
-        <select asp-for="HotspotRegular.HotspotId" asp-items="Model.Hotspots" class="form-select">
-            <option value="">— pick a hotspot —</option>
-        </select>
-        <span asp-validation-for="HotspotRegular.HotspotId" class="text-danger"></span>
-    </div>
+    <!-- Change asp-for here -->
+    <select asp-for="HotspotRegular.HotspotId" asp-items="Model.Hotspots" class="form-select">
+        <option value="">— pick a hotspot —</option>
+    </select>
+    
+    <span asp-validation-for="HotspotRegular.HotspotId" class="text-danger"></span>
+</div>
+
 
     <div class="mb-3">
         <label asp-for="HotspotRegular.Name" class="form-label"></label>
