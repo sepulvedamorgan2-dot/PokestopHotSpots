@@ -1,0 +1,59 @@
+
+@model PokestopHotSpots.ViewModels.HotspotRegularFormViewModel
+@{
+    ViewData["Title"] = "Create Hot Spot";
+    ViewData["PreviousPage"] = Url.Content("/HotSpots/Index");
+}
+<div class="row justify-content-center my-3">
+    <div class="col-12 col-md-8 mb-2">
+        <partial name="_BackArrow" />
+    </div>
+   
+       
+        <h1 class="col-12 col-lg-8">Add a HotSpot</h1>
+
+
+   
+<form asp-action="Create" method="post" class="col-12 col-lg-8">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    <div class="mb-3">
+        <label asp-for="HotspotRegular.HotspotId" class="form-label"></label>
+        <select asp-for="HotspotRegular.HotspotId" asp-items="Model.Hotspots" class="form-select">
+            <option value="">— pick a hotspot —</option>
+        </select>
+        <span asp-validation-for="HotspotRegular.HotspotId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="HotspotRegular.Name" class="form-label"></label>
+        <input asp-for="HotspotRegular.Name" class="form-control" />
+        <span asp-validation-for="HotspotRegular.Name" class="text-danger"></span>
+    </div>
+    
+   
+   <div class="mb-3">
+        <label asp-for="HotspotRegular.FriendshipCode" class="form-label"></label>
+        <input asp-for="HotspotRegular.FriendshipCode" class="form-control " style="resize: none;" rows="3"></
+        </textarea>
+        <span asp-validation-for="HotspotRegular.FriendshipCode" class="text-danger"></span>
+    </div>
+    
+   
+
+
+   
+    <div class="form-check mb-3">
+        <input asp-for="HotspotRegular.SendsDailyGifts" class="form-check-input" />
+        <label asp-for="HotspotRegular.SendsDailyGifts" class="form-check-label"></label>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Add HotSpots</button>
+    <a asp-action="Index" class="btn btn-link">Cancel</a>
+</form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

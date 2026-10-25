@@ -144,6 +144,53 @@ namespace PokestopHotSpots.Migrations
                             hasParking = true
                         });
                 });
+
+            modelBuilder.Entity("PokestopHotSpots.Models.HotspotRegular", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FriendshipCode")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<int>("HotspotId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<bool>("SendsDailyGifts")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotspotId");
+
+                    b.ToTable("HotspotRegulars");
+                });
+
+            modelBuilder.Entity("PokestopHotSpots.Models.HotspotRegular", b =>
+                {
+                    b.HasOne("PokestopHotSpots.Models.Hotspot", "Hotspot")
+                        .WithMany("HotspotRegulars")
+                        .HasForeignKey("HotspotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hotspot");
+                });
+
+            modelBuilder.Entity("PokestopHotSpots.Models.Hotspot", b =>
+                {
+                    b.Navigation("HotspotRegulars");
+                });
 #pragma warning restore 612, 618
         }
     }

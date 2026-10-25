@@ -19,7 +19,7 @@
     <div class="card-body">
         <h5 class="card-title fs-3">@Model.Name</h5>
         <p class="card-text">@Model.Description</p>
-
+        <p class="card-text">Regular Players: @Model.HotspotRegulars.Count</p>
         
          @if (ViewData["Title"] != "Pokestop Hot Spots")
         {
@@ -27,12 +27,12 @@
             <p class="card-text">@Model.PokestopDensity Pokestop Density</p>
             <p class="card-text">@(Model.hasParking ? " Parking Available" : "No Parking Available")</p>
             <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary" type="button">Edit HotSpot</a>
-          
+             <a href="/HotSpotRegulars/Create/@Model.Id" class="btn btn-primary" type="button">Add Regular</a>
         }
         @if (!ViewData["Title"].ToString().Contains("Details"))
         {
            <a href="/HotSpots/Details/@Model.Id" class="btn btn-primary" type="button">View Details</a>
-         
+           
         }
         
     </div>

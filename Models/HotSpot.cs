@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 namespace PokestopHotSpots.Models;
-
+using PokestopHotSpots.Models;
 public class Hotspot
 {
     public int Id { get; set; }
@@ -29,4 +29,5 @@ public class Hotspot
     [StringLength(100, MinimumLength = 0)]
     public string? Description { get; set; }
 
+    public ICollection<HotspotRegular> HotspotRegulars { get; set; } = new List<HotspotRegular>();
 }

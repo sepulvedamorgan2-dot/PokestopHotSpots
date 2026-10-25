@@ -11,6 +11,7 @@ public class PokestopHotspotContext : DbContext
     }
 
     public DbSet<Hotspot> Hotspots => Set<Hotspot>(); 
+    public DbSet<HotspotRegular> HotspotRegulars => Set<HotspotRegular>();
     protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Entity<Hotspot>().HasData(
@@ -25,5 +26,7 @@ public class PokestopHotspotContext : DbContext
         new Hotspot { Id = 9, Name = "Bay View Park", GymCount = 2, PokestopDensity = "Low", hasParking = true, Description = "A quiet park with a peaceful atmosphere and a low density of Pokestops and gyms." },
         new Hotspot { Id = 10, Name = "Kletzsch Park", GymCount = 2, PokestopDensity = "Low", hasParking = true, Description = "A small park with a peaceful atmosphere and a low density of Pokestops and gyms." }
     );
+    
 }
+
 }

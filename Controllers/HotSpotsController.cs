@@ -20,11 +20,11 @@ public class HotSpotsController : Controller
     }
     public IActionResult Index()
     {
-        return View(_context.Hotspots.ToList());
+        return View(_context.Hotspots.Include(h => h.HotspotRegulars).ToList());
     }
     public IActionResult Details(int id)
     {
-        var Hotspot = _context.Hotspots.FirstOrDefault(h => h.Id == id);
+        var Hotspot = _context.Hotspots.Include(h => h.HotspotRegulars).FirstOrDefault(h => h.Id == id);
         if (Hotspot == null)
         {
             return NotFound();
@@ -65,7 +65,7 @@ public class HotSpotsController : Controller
                 return NotFound();
             }
 
-            var hotspot = await _context.Hotspots.FindAsync(id);
+            var hotspot = await _context.Hotspots.Include(h => h.HotspotRegulars).FirstOrDefaultAsync(h => h.Id == id);
             if (hotspot == null)
             {  
                 return NotFound();

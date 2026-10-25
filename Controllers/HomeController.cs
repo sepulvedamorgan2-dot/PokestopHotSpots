@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PokestopHotSpots.Models;
 using PokestopHotSpots.Data;
+using Microsoft.EntityFrameworkCore;
 namespace PokestopHotSpots.Controllers;
 
 public class HomeController : Controller
@@ -16,7 +17,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         
-        return View(_context.Hotspots.ToList());
+        return View(_context.Hotspots.Include(h => h.HotspotRegulars).ToList());
     }
 
     public IActionResult Privacy()
