@@ -8,26 +8,42 @@
 <partial name="_BackArrow" />
 </div>
 <h2>Hot Spots</h2>
-<table class="table table-striped">
-    <thead>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
         <tr>
-            <th scope="col"></th>
+            <th scope="col">#</th>
             <th scope="col">Name</th>
-            <th  class="d-none d-md-table-cell" scope="col">Gym Count</th>
-            <th class="d-none d-md-table-cell" scope="col">Pokestop Density</th>
-            <th class="d-none d-md-table-cell" scope="col">Parking Available</th>
+            <th scope="col">Gym Count</th>
+            <th scope="col">Pokestop Density</th>
+            <th scope="col">Parking Available</th>
+            <th scope="col">Action</th>
         </tr>
-    </thead>
-<tbody>
-    @foreach(Hotspot hotSpot in @Model){
-    <tr> 
-    <th scope="row">@hotSpot.Id</th>
-      <td>@hotSpot.Name</td>
-      <td class="d-none d-md-table-cell">@hotSpot.GymCount</td>
-      <td class="d-none d-md-table-cell">@hotSpot.PokestopDensity</td>
-      <td class="d-none d-md-table-cell">@(hotSpot.hasParking ? "Yes" : "No")</td>
-      <td href="/HotSpots/Details/@hotSpot.Id"><a href="/HotSpots/Details/@hotSpot.Id">Details</a></td>
-    </tr>
-}
-</tbody>
-</table>
+        </thead>
+        <tbody>
+        @if (Model == null || !Model.Any())
+        {
+            <tr>
+                <td colspan="6" class="text-center py-4">
+                    <p class="mb-2">No Hotspots found.</p>
+                    <a href="/HotSpots/Create" class="btn btn-primary btn-sm">Create New Hotspot</a>
+                </td>
+            </tr>
+        }
+        else
+        {
+            @foreach (Hotspot hotSpot in Model)
+            {
+                <tr> 
+                    <th scope="row">@hotSpot.Id</th>
+                    <td>@hotSpot.Name</td>
+                    <td>@hotSpot.GymCount</td>
+                    <td>@hotSpot.PokestopDensity</td>
+                    <td>@(hotSpot.hasParking ? "Yes" : "No")</td>
+                    <td><a href="/HotSpots/Details/@hotSpot.Id" class="btn btn-sm btn-outline-secondary">Details</a></td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>

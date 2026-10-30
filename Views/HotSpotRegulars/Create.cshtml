@@ -1,8 +1,9 @@
 
 @model PokestopHotSpots.ViewModels.HotspotRegularFormViewModel
 @{
-    ViewData["Title"] = "Create Hot Spot";
-    ViewData["PreviousPage"] = Url.Content("/HotSpots/Index");
+    String test = (Model.HotspotRegular.HotspotId).ToString();
+    ViewData["Title"] = "Add a Regular Player";
+    ViewData["PreviousPage"] = Url.Content($"/HotSpots/Details/{test}");
 }
 <div class="row justify-content-center my-3">
     <div class="col-12 col-md-8 mb-2">
@@ -16,7 +17,7 @@
    
 <form asp-action="Create" method="post" class="col-12 col-lg-8">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <p>@Model.HotspotRegular.HotspotId</p>
+    
    <div class="mb-3">
     <label asp-for="HotspotRegular.HotspotId" class="form-label"></label>
     
@@ -38,13 +39,11 @@
    
    <div class="mb-3">
         <label asp-for="HotspotRegular.FriendshipCode" class="form-label"></label>
-        <input asp-for="HotspotRegular.FriendshipCode" class="form-control " style="resize: none;" rows="3"></
-        </textarea>
+        <input asp-for="HotspotRegular.FriendshipCode" class="form-control " style="resize: none;" rows="3">
         <span asp-validation-for="HotspotRegular.FriendshipCode" class="text-danger"></span>
     </div>
     
-   
-
+    
 
    
     <div class="form-check mb-3">
@@ -53,8 +52,8 @@
     </div>
 
 
-    <button type="submit" class="btn btn-primary">Add HotSpots</button>
-    <a asp-action="Index" class="btn btn-link">Cancel</a>
+    <button type="submit" class="btn btn-primary">Add Regular </button>
+    <a  class="btn btn-link">Cancel</a>
 </form>
 </div>
 @section Scripts {

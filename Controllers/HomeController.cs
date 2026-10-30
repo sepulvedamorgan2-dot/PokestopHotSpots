@@ -20,10 +20,7 @@ public class HomeController : Controller
         return View(_context.Hotspots.Include(h => h.HotspotRegulars).ToList());
     }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+   
 
 
  

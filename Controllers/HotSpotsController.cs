@@ -27,7 +27,7 @@ public class HotSpotsController : Controller
         var Hotspot = _context.Hotspots.Include(h => h.HotspotRegulars).FirstOrDefault(h => h.Id == id);
         if (Hotspot == null)
         {
-            return NotFound();
+             return View("Error", "Hotspot ID is null.");
         }
         return View(Hotspot);
     }
@@ -62,13 +62,13 @@ public class HotSpotsController : Controller
         {
             if (id == null)
             {
-                return NotFound();
+                return View("Error", "Hotspot ID is null.");
             }
 
             var hotspot = await _context.Hotspots.Include(h => h.HotspotRegulars).FirstOrDefaultAsync(h => h.Id == id);
             if (hotspot == null)
             {  
-                return NotFound();
+                return View("Error", "Hotspot not found.");
             }
             return View(hotspot);
         }
@@ -108,19 +108,24 @@ public class HotSpotsController : Controller
         {
             if (id == null)
             {
-                return NotFound();
+                return View("Error", "Hotspot ID is null.");
             }
 
             var hotspot = await _context.Hotspots
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (hotspot == null)
             {
-                return NotFound();
+                return View("Error", "Hotspot not found.");
             }
 
             return View(hotspot);
         }
-
+        public async Task<IActionResult> Error(String? message)
+        {
+            
+           
+            return View(message);
+        }
         // POST: HotSpotScaffold/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -137,11 +142,7 @@ public class HotSpotsController : Controller
         }
     
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+    
     private bool HotspotExists(int id)
         {
             return _context.Hotspots.Any(e => e.Id == id);
