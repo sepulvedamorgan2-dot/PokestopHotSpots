@@ -6,7 +6,7 @@
     ViewData["PreviousPage"] = Url.Content($"/HotSpots/Details/{test}");
 }
 <div class="row justify-content-center my-3">
-    <div class="col-12 col-md-8 mb-2">
+    <div class="col-12 ">
         <partial name="_BackArrow" />
     </div>
    
@@ -53,7 +53,7 @@
 
 
     <button type="submit" class="btn btn-primary">Add Regular </button>
-    <a  class="btn btn-link">Cancel</a>
+    <a  asp-controller="Hotspots" asp-action="Details" asp-route-id="@Model.HotspotRegular.HotspotId" class="btn btn-link">Cancel</a>
 </form>
 </div>
 @section Scripts {
