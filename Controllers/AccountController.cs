@@ -30,7 +30,7 @@ public class AccountController : Controller
             return View(form);
         }
 
-        var user = new AppUser { UserName = form.Email, Email = form.Email };
+        var user = new AppUser { UserName = form.Email, Email = form.Email, TrainerName = form.TrainerName, FriendshipCode = form.FriendshipCode };
         var result = await _userManager.CreateAsync(user, form.Password);
 
         if (!result.Succeeded)

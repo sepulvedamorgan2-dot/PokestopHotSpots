@@ -1,21 +1,30 @@
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> UserManager
 
+<ul class="navbar-nav align-items-sm-center">
 @if (User.Identity?.IsAuthenticated == true)
 {
+     var member = await UserManager.GetUserAsync(User);
+    var name = string.IsNullOrEmpty(member?.TrainerName) ? User.Identity.Name : member.TrainerName;
     <li class="nav-item">
-        <span class="navbar-text me-2">Signed in as @User.Identity.Name</span>
+        <span class="navbar-text text-white me-2">
+    Signed in as @name
+</span>
+
     </li>
     <li class="nav-item">
         <form asp-controller="Account" asp-action="Logout" method="post">
-            <button type="submit" class="btn btn-link nav-link">Sign out</button>
+            <button type="submit" class="btn btn-link text-white   nav-link">Sign out</button>
         </form>
     </li>
 }
 else
 {
     <li class="nav-item">
-        <a class="nav-link" asp-controller="Account" asp-action="Register">Create an account</a>
+        <a class="nav-link text-white" asp-controller="Account" asp-action="Register">Create an account</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" asp-controller="Account" asp-action="Login">Sign in</a>
+        <a class="nav-link text-white" asp-controller="Account" asp-action="Login">Sign in</a>
     </li>
 }
+</ul>

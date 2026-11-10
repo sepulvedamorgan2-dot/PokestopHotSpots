@@ -19,6 +19,7 @@ public class RegisterViewModel
     public string ConfirmPassword { get; set; } = "";
     
     [StringLength(15, MinimumLength = 4)]
+    [Display(Name = "Trainer Name")]
     public string TrainerName { get; set; } = "";
 
     [Required(ErrorMessage = "Friendship Codes are 12 digits long.")]
