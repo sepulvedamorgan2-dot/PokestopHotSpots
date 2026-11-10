@@ -17,4 +17,12 @@ public class RegisterViewModel
     [Display(Name = "Confirm password")]
     [Compare(nameof(Password), ErrorMessage = "The two passwords don't match.")]
     public string ConfirmPassword { get; set; } = "";
+    
+    [StringLength(15, MinimumLength = 4)]
+    public string TrainerName { get; set; } = "";
+
+    [Required(ErrorMessage = "Friendship Codes are 12 digits long.")]
+    [StringLength(12, MinimumLength = 12)]
+    [Display(Name = "Friendship Code")]
+    public string FriendshipCode { get; set; } = "";
 }
