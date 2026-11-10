@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PokestopHotSpots.Data;
 using PokestopHotSpots.Models;
+using Microsoft.AspNetCore.Authorization;
 namespace PokestopHotSpots.Controllers;
-
+[Authorize]
 public class HotSpotsController : Controller
 {
     private readonly PokestopHotspotContext _context;
@@ -18,10 +19,12 @@ public class HotSpotsController : Controller
     {
         _context = context;
     }
+    [AllowAnonymous]
     public IActionResult Index()
     {
         return View(_context.Hotspots.Include(h => h.HotspotRegulars).ToList());
     }
+    [AllowAnonymous]
     public IActionResult Details(int id)
     {
         var Hotspot = _context.Hotspots.Include(h => h.HotspotRegulars).FirstOrDefault(h => h.Id == id);

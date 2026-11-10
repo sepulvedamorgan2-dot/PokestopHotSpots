@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using PokestopHotSpots.Models;
+using Microsoft.AspNetCore.Identity;
 
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace PokestopHotSpots.Data;
 
 
-public class PokestopHotspotContext : DbContext
+
+public class PokestopHotspotContext : IdentityDbContext<AppUser>
 {
     public PokestopHotspotContext(DbContextOptions<PokestopHotspotContext> options) : base(options)
     {
@@ -12,8 +15,11 @@ public class PokestopHotspotContext : DbContext
 
     public DbSet<Hotspot> Hotspots => Set<Hotspot>(); 
     public DbSet<HotspotRegular> HotspotRegulars => Set<HotspotRegular>();
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
+    base.OnModelCreating(modelBuilder);
+    
     modelBuilder.Entity<Hotspot>().HasData(
         new Hotspot { Id = 1, Name = "Lakefront Park", GymCount = 6, PokestopDensity = "High", hasParking = true, Description = "A beautiful park along the lakefront with plenty of Pokestops and gyms." },
         new Hotspot { Id = 2, Name = "Veterans Park", GymCount = 4, PokestopDensity = "High", hasParking = true, Description = "A popular park with a high density of Pokestops and gyms, perfect for Pokemon Go players." },
