@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PokestopHotSpots.Models;
 using PokestopHotSpots.ViewModels;
-
+using Microsoft.AspNetCore.Authorization;
 namespace PokestopHotSpots.Controllers;
 
 public class AccountController : Controller
@@ -48,6 +48,17 @@ public class AccountController : Controller
     public IActionResult Login(string? returnUrl = null)
 {
     ViewData["ReturnUrl"] = returnUrl;
+    return View();
+}
+
+
+[Authorize]
+public IActionResult Claims()
+{
+    return View();
+}
+public IActionResult AccessDenied()
+{
     return View();
 }
 
