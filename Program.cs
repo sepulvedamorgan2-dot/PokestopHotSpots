@@ -13,6 +13,10 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<PokestopHotspotContext>();
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    await RoleSeeder.SeedAsync(scope.ServiceProvider);
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

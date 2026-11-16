@@ -144,8 +144,11 @@
 
                             @if (ViewData["Title"] != "Pokestop Hot Spots")
                             {
+                                @if (User.IsInRole("Admin"))
+{
                                 <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary" type="button">Edit
                                     HotSpot</a>
+}
                                 <a asp-controller="HotSpotRegulars" asp-action="Create" asp-route-id="@Model.Id"
                                    class="btn btn-success" type="button">Add Regular</a>
                             }

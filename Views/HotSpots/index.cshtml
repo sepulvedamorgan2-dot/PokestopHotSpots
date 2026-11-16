@@ -7,7 +7,9 @@
 @* <div class="row justify-content-center my-3"> *@
 @* <partial name="_BackArrow" /> *@
 @* </div> *@
-<a href="/HotSpots/Create" 
+@if (User.IsInRole("Admin"))
+{
+    <a href="/HotSpots/Create" 
    class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center shadow-lg position-fixed" 
    style="bottom: 30px; right: 30px; width: 60px; height: 60px; z-index: 1050; transition: transform 0.2s ease;"
    onmouseover="this.style.transform='scale(1.1)'" 
@@ -15,6 +17,8 @@
    title="Create New Hotspot">
     <p class="bi bi-plus-lg fs-3 pt-3" style="text-decoration: none">+</p>
 </a>
+}
+
 <h2>Hot Spots</h2>
 <div class="table-responsive">
     <table class="table table-striped">

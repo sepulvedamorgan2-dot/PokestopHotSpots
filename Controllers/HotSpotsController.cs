@@ -10,7 +10,7 @@ using PokestopHotSpots.Data;
 using PokestopHotSpots.Models;
 using Microsoft.AspNetCore.Authorization;
 namespace PokestopHotSpots.Controllers;
-[Authorize]
+[Authorize(Roles = "Admin")]
 public class HotSpotsController : Controller
 {
     private readonly PokestopHotspotContext _context;
