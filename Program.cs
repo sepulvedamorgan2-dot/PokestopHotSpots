@@ -35,4 +35,6 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 
+app.MapGet("/api/hotspots/count", async (PokestopHotspotContext db) =>
+    new { count = await db.Hotspots.CountAsync() });
 app.Run();
